@@ -1,0 +1,2 @@
+# Ferramentas de desenvolvimento e validação; não são necessárias para executar o aplicativo.
+coverage>=7.0,<8

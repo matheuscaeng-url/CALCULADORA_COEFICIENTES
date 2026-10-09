@@ -1,0 +1,32 @@
+# Python: caches e ambientes locais
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Arquivos gerados pelo empacotamento
+build/
+dist/
+*.egg-info/
+
+# Configurações e credenciais locais
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Temporários de editores, Excel e sistema operacional
+~$*
+*.tmp
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini

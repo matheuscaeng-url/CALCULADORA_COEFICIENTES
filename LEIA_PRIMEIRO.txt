@@ -1,0 +1,740 @@
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.22 — 09/10/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta. Abra ABRIR_PROCESSO_3.exe ou
+EXECUTAR_EM_PYTHON.bat. Mantenha dependencias e todos os demais arquivos
+junto ao programa. Requer Python 3.10 ou superior com Tcl/Tk.
+O .exe é o iniciador do programa Python; as bibliotecas Excel estão incluídas.
+
+ALTERAÇÕES DESTA VERSÃO
+1. Eletrocalhas retas, emendas, cotovelos, curvas e tês agora têm campos de
+   Largura e Altura. Reduções têm Largura maior, Largura menor e Altura.
+   É possível adaptar para altura de 100 mm ou outra medida positiva.
+2. Largura(s) e altura participam do índice RMS, usado como eixo das curvas
+   de coeficientes. Com duas referências, o cálculo é linear; com três ou
+   mais índices distintos, é PCHIP. Cada componente tem sua própria curva.
+3. As referências incluídas possuem somente altura de 50 mm. Para usar
+   outra altura, marque "Permitir extrapolação". Mesmo que o índice RMS
+   esteja dentro da curva, uma altura fora da faixa observada exige essa
+   opção. O resultado e a justificativa identificam a altura sem referência
+   observada e a hipótese dimensional RMS; a revisão técnica é obrigatória.
+4. A descrição dos materiais acompanha largura(s) e altura do alvo. Uma
+   adaptação para 100 mm não conserva o código ou preço de um material de
+   50 mm, inclusive nas talas para emenda. O código e preço do alvo só são
+   exibidos quando o insumo correspondente realmente existe na referência.
+5. Alturas diferentes passam a integrar a mesma família quando as demais
+   características técnicas são equivalentes. Material, aplicação, tipo e
+   demais especificações continuam separados. Suportes mantêm largura
+   atendida e comprimento do perfil, com a diferença de 50 mm da referência.
+
+RECURSOS DA VERSÃO ANTERIOR MANTIDOS
+1. Removidos o botão "Selecionar referências por código" e seu diálogo da
+   primeira aba. A seleção por código permanece na Tendência itens SINAPI.
+2. A disciplina Elétrica agora reúne todas as 92 composições de eletrocalhas,
+   conexões e suportes da referência incluída, em 8 famílias com tendência:
+   eletrocalha reta, emenda, redução, cotovelo horizontal, cotovelo reto,
+   curva horizontal, tê horizontal e suporte.
+3. A espessura da chapa e o suporte do alvo devem ser conferidos; a tendência
+   não dimensiona esses elementos.
+4. Corrigido o alinhamento da Tendência itens SINAPI quando recursos da mesma
+   função possuem códigos e dimensões diferentes. Medidas compostas, frações
+   e pequenas variações de escrita não criam linhas vazias artificiais.
+   Os pares 97236/97238 e 97238/97248 mantêm seus 5 componentes; o par
+   97249/97251 mantém seus 7 componentes.
+5. A quantidade de linhas acompanha os recursos reais. Repetições são
+   preservadas individualmente. Recursos tecnicamente diferentes permanecem
+   separados, e ausências reais ficam vazias para conferência, sem preencher
+   com zero. Coeficientes zero existentes na referência são preservados.
+6. A base automática passa a 2.300 composições, 1.366 insumos e 617 famílias:
+   426 com tendência e 191 com referência única. As 609 famílias anteriores
+   de tubos e conexões permanecem preservadas. A Tendência itens SINAPI tem
+   acesso às 10.547 composições do Analítico.
+
+REFERÊNCIA E ATUALIZAÇÃO
+Mantida a referência SINAPI 08/2026 e sua planilha original. Esta versão não
+altera a competência. Bases locais antigas são ampliadas a partir da base
+completa correspondente, conferindo competência e identificação do arquivo.
+Se ela não estiver disponível, reimporte a referência que pretende usar.
+
+VALIDAÇÃO
+154 testes automatizados aprovados, incluindo a cobertura anterior e oito
+novos testes dedicados à adaptação de altura.
+Cobrem importação do XLSX, 92 alvos oficiais, 8 famílias elétricas, preços,
+migração, exportação e alinhamento manual de todas as combinações de pares
+nessas famílias. Incluem preservação de material, junta, ângulo, norma,
+classe, tipo, unidade, recursos extras, repetições e coeficientes zero.
+Também verificam altura de 100 mm nas sete famílias de eletrocalhas e
+conexões, restrição de extrapolação, alterações dos coeficientes, descrição,
+preços das talas, referências futuras de outra altura e exportação em Excel.
+A interface gráfica Windows não foi executada neste ambiente; os fluxos
+foram verificados com controles simulados e Tcl.
+
+HISTÓRICO — AS ORIENTAÇÕES ATUAIS ACIMA SUBSTITUEM AS ANTERIORES
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.20 — 01/10/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta. Abra ABRIR_PROCESSO_3.exe ou
+EXECUTAR_EM_PYTHON.bat. Mantenha a pasta dependencias e os demais arquivos
+junto ao programa. Requer Python 3.10 ou superior com Tcl/Tk.
+As bibliotecas de leitura e exportação de Excel estão incluídas; não é
+necessário instalar openpyxl, executar pip ou conectar à internet para usar.
+O .exe continua sendo o iniciador do programa Python.
+
+ALTERAÇÕES
+1. Tendência (2+ referências): clique em Coef. alvo para selecionar o número;
+   pode arrastar sobre o texto e usar Ctrl+C ou botão direito > Copiar.
+   O campo é somente leitura: não aceita digitação, recortar nem colar.
+2. Tendência genérica — manual: + Componente e Colar coeficientes do Excel
+   ficam abaixo da matriz de coeficientes, à direita, conforme o print.
+   + Composição continua vinculado à tabela de referências.
+3. Referências genéricas: campos Banco e Data do banco incluídos. Preencha,
+   por exemplo, ORSE e 07/26. A data é a competência da base, não a data de
+   execução do programa. Se ficar vazia, aparece como não informada.
+   Alterar Banco/Data invalida o resultado anterior e permite recalcular
+   sem perder os coeficientes preenchidos.
+4. Excel: incluídos openpyxl 3.1.5 e et_xmlfile 2.0.0, com suas licenças.
+   Conferidos os botões existentes: Tendência 2+, Regra de 3 SINAPI e
+   Tendência itens SINAPI. As calculadoras genéricas mantêm suas opções
+   de cópia; não receberam novos botões de exportação.
+5. Todas as justificativas seguem Banco, Data do banco, código(s) de
+   referência e Técnica. Na Regra de 3, o texto termina com o fator de
+   correção, sem fórmula ou desenvolvimento da conta. Fórmulas detalhadas
+   permanecem na memória de cálculo, separadas da justificativa curta.
+
+EXEMPLO — REGRA DE 3
+Banco: ORSE. Data do banco: 07/26. Código de referência: 1217.
+Técnica: regra de três direta. Fator de correção utilizado: 2.
+
+VALIDAÇÃO
+121 testes automatizados aprovados. Incluem os três botões de exportação,
+reabertura dos arquivos XLSX e conferência dos valores e justificativas,
+banco/data no texto copiado e invalidação após edição dos metadados.
+As três exportações passaram também em Python sem bibliotecas instaladas
+(site-packages desativado), usando somente dependencias/ do pacote.
+Base SINAPI 08/2026 e funções numéricas preservadas. A descrição da técnica
+com 2 pontos em extrapolação foi corrigida para linear, sem alterar a conta.
+A interface gráfica no Windows não foi executada neste ambiente; fluxos
+foram verificados por testes automatizados com controles simulados/Tcl.
+
+HISTÓRICO — AS ORIENTAÇÕES ATUAIS ACIMA SUBSTITUEM AS ANTERIORES
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.19 — 01/10/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta e abra ABRIR_PROCESSO_3.exe
+ou EXECUTAR_EM_PYTHON.bat. Mantenha todos os arquivos juntos.
+
+ALTERAÇÃO DESTA VERSÃO
+Somente o texto de orientação nas duas tendências manuais foi atualizado.
+A orientação agora informa que POL significa polegadas para medidas inteiras,
+decimais ou fracionárias, sem restringir a explicação a dois exemplos.
+
+O funcionamento é o mesmo da versão 1.5.18: a unidade da coluna define a
+unidade dos parâmetros e do alvo. Com POL selecionado, um número inteiro
+representa polegadas. O símbolo de polegada não é obrigatório.
+
+Os campos Código SINAPI e Código genérico identificam as referências.
+As medidas usadas no cálculo devem ficar nos campos Dimensão ou Parâmetro.
+
+VALIDAÇÃO
+Conferida a sintaxe dos arquivos alterados e a leitura de um alvo inteiro
+com a coluna em POL. Confirmado que o núcleo de cálculo e a leitura de
+frações são idênticos aos da versão 1.5.18, que passou por 114 testes.
+A interface gráfica Windows não foi executada neste ambiente.
+
+HISTÓRICO DE VERSÕES
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.18 — 01/10/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta e abra ABRIR_PROCESSO_3.exe
+ou EXECUTAR_EM_PYTHON.bat. Mantenha todos os arquivos juntos.
+O .exe incluído é o iniciador do programa Python, como na versão anterior.
+
+CORREÇÃO — PARÂMETROS EM POLEGADAS
+A Tendência genérica — manual agora reconhece frações nos parâmetros das
+referências e do alvo. A Tendência itens SINAPI foi verificada no mesmo fluxo
+e compartilha a leitura ampliada de dimensões.
+
+COMO DIGITAR
+1. Na unidade da coluna de dimensão/parâmetro, selecione POL.
+2. Digite a medida: 1/2, 3/4, 1 1/2 ou 2 1/2, por exemplo.
+3. Prepare/carregue as referências, confira os coeficientes e informe o alvo
+   usando a mesma notação. Depois clique em Calcular.
+
+Também aceita 3/4", 3/4″, 3 / 4, ¾ e 1½. Em 1 1/2, use um espaço entre
+inteiro e fração. As referências e o alvo continuam com o texto digitado.
+A memória e a justificativa copiada apresentam polegadas em fração.
+Para milímetros, selecione MM e continue digitando 25, 32, 40 etc.
+Se escrever uma unidade dentro do campo, ela precisa coincidir com a coluna.
+
+Frações são permitidas nos parâmetros/dimensões. Os coeficientes continuam
+numéricos decimais, como 0,3279. Frações inválidas, como 3/0, são recusadas.
+
+A tela mantém Referências, coeficientes e alvo na mesma aba, nas duas
+calculadoras, e Resultados em outra aba. Os métodos linear/PCHIP, o índice
+RMS de cada calculadora e a base SINAPI 08/2026 foram preservados.
+
+VALIDAÇÃO
+114 testes automatizados aprovados. Incluem frações simples e mistas,
+referências e alvo, 2 e 3 referências, dimensões múltiplas, cópia dos valores
+e da justificativa, carregamento de composições SINAPI e rejeição de entradas
+inválidas. Fluxos da interface testados com controles simulados e variáveis
+Tcl; a interface gráfica Windows não foi executada neste ambiente.
+
+HISTÓRICO DE VERSÕES
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.17 — 01/10/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta e abra ABRIR_PROCESSO_3.exe
+ou EXECUTAR_EM_PYTHON.bat. Mantenha todos os arquivos juntos.
+
+ALTERAÇÕES DESTA VERSÃO
+- Referências e Coeficientes e alvo foram unificados na mesma aba, tanto na
+  Tendência genérica — manual quanto na Tendência itens SINAPI.
+- O nome SINAPI — carregar composições passa a ser Tendência itens SINAPI.
+- A primeira aba mostra referências à esquerda e coeficientes à direita.
+  Arraste a divisória central para ajustar a largura de cada tabela.
+- Origem, alvo e botão Calcular ficam na parte inferior da mesma aba, ocupando
+  a largura total e fora da rolagem das tabelas.
+- Preparar/carregar as referências atualiza a matriz na mesma tela.
+- Resultados permanece em uma segunda aba, aberta automaticamente ao calcular.
+  Os botões de cópia e o retorno à edição continuam disponíveis.
+
+FLUXO
+1. Preencha os códigos e as dimensões/parâmetros à esquerda.
+2. Clique em Carregar SINAPI ou Preparar / atualizar tabela.
+3. Confira/preencha os coeficientes na tabela à direita.
+4. Informe a origem e o alvo na base e clique em Calcular.
+5. Confira e copie os valores na aba Resultados.
+
+101 testes automatizados aprovados, incluindo as duas calculadoras,
+navegação entre entrada unificada e resultados, cópia, retorno à edição e
+invalidação dos resultados antigos. A interface gráfica Windows não foi
+executada neste ambiente. Os métodos de cálculo e a base foram preservados.
+
+HISTÓRICO — AS TELAS ANTIGAS DESCRITAS ABAIXO FORAM SUBSTITUÍDAS
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+VERSÃO 1.5.16 — 30/09/2026
+
+COMO ABRIR
+Extraia todo o ZIP para uma nova pasta e abra ABRIR_PROCESSO_3.exe
+ou EXECUTAR_EM_PYTHON.bat. Todos os arquivos devem permanecer juntos.
+O .exe incluído é o iniciador do programa Python. Mantido o gerador de
+executável Windows para quem desejar empacotar o Python no próprio programa.
+O arquivo processo3.pyw sozinho não contém as telas e o núcleo de cálculo.
+
+NOVA TENDÊNCIA MANUAL — SINAPI E GENÉRICA
+As duas subabas agora têm o mesmo fluxo de trabalho:
+
+1. REFERÊNCIAS
+   Preencha os códigos e as dimensões/parâmetros das composições.
+   Na SINAPI, dimensões 2 e 3 continuam opcionais.
+   Na genérica, referências e parâmetros continuam dinâmicos.
+   Use Carregar/Preparar e continuar para abrir a tabela de coeficientes.
+
+2. COEFICIENTES E ALVO
+   A matriz ocupa a largura da tela, com cada referência em uma coluna.
+   Cada linha corresponde a um recurso/coeficiente.
+   Origem, dimensões desejadas e Calcular ficam em uma área fixa na base.
+   Tabelas grandes têm rolagem local; não empurram o botão Calcular.
+   Na genérica, continuam disponíveis + Componente e Colar do Excel.
+   Na SINAPI, confira a equivalência técnica antes do cálculo.
+
+3. RESULTADOS
+   Abre automaticamente após calcular com sucesso.
+   A tabela usa a área central inteira, com rolagem horizontal e vertical.
+   Copiar coeficientes, Copiar tabela e Copiar justificativa ficam na base;
+   a subaba SINAPI também mantém Exportar Excel.
+   Clique em um Novo coeficiente para selecionar/copiá-lo individualmente.
+   A memória e as referências ficam na guia ao lado dos novos coeficientes.
+   Voltar à edição mantém todos os dados preenchidos.
+
+É possível voltar às etapas anteriores a qualquer momento. Alterar um dado
+invalida o resultado anterior e desabilita sua cópia até um novo cálculo.
+Alterar códigos ou dimensões de referência exige atualizar a matriz, como
+na versão anterior. Os dados são mantidos durante a navegação na sessão.
+
+A janela inicial se ajusta à resolução da tela e pode ser redimensionada.
+A referência SINAPI, os cálculos e o agrupamento da versão 1.5.15 foram
+preservados. Esta atualização reorganiza a interface das tendências manuais.
+
+VALIDAÇÃO
+101 testes automatizados aprovados, incluindo navegação, cálculo nas duas
+subabas, cópia, invalidação de resultado e retorno à edição com os dados.
+As bases compactadas e os núcleos manual/regra de 3 permanecem idênticos
+aos do pacote 1.5.15; no núcleo automático mudou somente a versão.
+A execução gráfica em Windows não foi realizada neste ambiente.
+
+HISTÓRICO DAS VERSÕES ANTERIORES
+As notas abaixo descrevem layouts anteriores, substituídos pelo fluxo acima.
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+
+ATUALIZAÇÃO v1.5.15
+
+- Tendência manual SINAPI e genérica: layout reorganizado para dar prioridade horizontal à tabela de coeficientes. O Item 3 agora fica no bloco superior direito, ao lado das referências; o Item 2 (origem e dimensões desejadas) fica no bloco inferior esquerdo, ao lado do resultado.
+- O botão Calcular permanece visível nas duas subabas, com campos de alvo compactos.
+
+- Layout compacto nas duas subabas da Tendência manual: códigos com largura para cerca de 10 dígitos e bloco "Origem e dimensões desejadas" posicionado à direita, logo após os parâmetros.
+- Restaurado o layout estável da v1.5.10 nas duas subabas de Tendência manual.
+- SINAPI: referências, origem/alvo, botão Calcular, coeficientes e resultado permanecem visíveis simultaneamente.
+- Genérica: referências, origem/alvo, botão Calcular, entrada manual dos coeficientes e resultado permanecem visíveis simultaneamente.
+- Removida nessas duas subabas a divisão vertical que podia ocultar o Item 2 ou o Item 3.
+- Mantida a divisão horizontal entre Coeficientes por referência e Resultado para ajuste de largura.
+
+PROCESSO 3 — CALCULADORAS DE COEFICIENTES
+
+ATUALIZAÇÃO v1.5.12
+- Corrigida a Tendência genérica: a área 2 (Referência de origem, parâmetro(s) alvo, unidade do serviço, Permitir extrapolação e botão Calcular) agora permanece sempre visível.
+- A divisória vertical redimensiona apenas a área de referências em relação ao bloco inferior; reduzir o painel superior não pode mais esconder o alvo nem o botão Calcular.
+- Mantidas as divisórias arrastáveis das tabelas e a possibilidade de ampliar/reduzir as áreas 3 e 4.
+
+ATUALIZAÇÃO v1.5.11
+- TODAS AS ÁREAS DE TABELA principais agora possuem divisórias arrastáveis para aumentar/reduzir largura e/ou altura conforme a tela.
+- Na Tendência manual SINAPI e genérica, a região de coeficientes/resultados pode ser ampliada verticalmente e a divisão entre entrada/resultado pode ser ajustada horizontalmente.
+- Na Tendência automática, a lista de famílias, a tabela de resultados e a área de detalhes podem ser redimensionadas.
+- Na Regra de 3 SINAPI, a lista de composições e a área de cálculo também têm divisão horizontal ajustável.
+
+- Tendência genérica redesenhada no mesmo fluxo da aba SINAPI: códigos/parâmetros no topo, carregar tabela, coeficientes por referência à esquerda e resultado à direita.
+- Novo coeficiente pode ser selecionado diretamente com o mouse para Ctrl+C em todas as tabelas de resultado.
+- A justificativa da aba Tendência (2+ referências) agora lista explicitamente todas as composições efetivamente utilizadas na curva, com código e dimensão.
+- Corrigido o agrupamento automático de famílias quando as descrições SINAPI diferem apenas por formatação tipográfica, como AR-CONDICIONADO/AR CONDICIONADO, DN 25MM/DN 25 MM e pequenos espaçamentos. O caso 89867 agora fica na mesma família de 104318 e 104320 (20, 25 e 32 mm), e equivalências do mesmo tipo também são agrupadas.
+- A Tendência genérica — manual foi reorganizada no mesmo sentido da subaba SINAPI: as referências/códigos aparecem como colunas na tabela de coeficientes e os coeficientes ficam em linhas verticais. Mantidos + referência, + parâmetro, − último parâmetro, + coeficiente e − último coeficiente.
+- Os campos Identificação e Unidade dos coeficientes genéricos permanecem opcionais e cada linha continua sendo interpolada de forma independente.
+- Em todas as abas de resultado, os novos coeficientes podem ser copiados em lote pelos botões existentes e também individualmente: ao clicar no valor calculado ele vira temporariamente um campo de texto selecionável para seleção com o mouse e Ctrl+C. Na Regra de 3 genérica o campo de resultado já é diretamente selecionável.
+- A normalização tipográfica reduziu famílias artificiais duplicadas: a base incluída passa a apresentar 418 famílias com tendência e 191 famílias realmente de referência única.
+- Validação: 94 testes automatizados, além de teste gráfico da Tendência genérica e do seletor individual de célula em ambiente Tk virtual.
+
+ATUALIZAÇÃO v1.5.8
+- Corrigido o botão − último parâmetro da subaba Tendência genérica — manual.
+- Agora a quantidade de parâmetros é realmente dinâmica: pode começar com 1, aumentar com + parâmetro e diminuir novamente com − último parâmetro.
+- O botão de remoção só fica desabilitado quando resta 1 parâmetro, que é o mínimo permitido.
+- Não há limite fixo de quantidade de parâmetros na Tendência genérica manual; todos são adicionados simultaneamente às referências e ao alvo.
+- Validado na interface o ciclo de 1 até 8 parâmetros e retorno até 1, além dos testes do núcleo com 7 parâmetros simultâneos.
+
+ATUALIZAÇÃO v1.5.7
+- Na subaba Tendência genérica — manual, foram mantidos e destacados os botões Copiar coeficientes e Copiar justificativa, no mesmo padrão de uso da subaba SINAPI.
+- Incluído o botão + parâmetro para adicionar novas dimensões/parâmetros a todas as referências e ao alvo.
+- A tendência genérica agora aceita múltiplos parâmetros dimensionais por referência, útil para joelhos de redução, tês de redução e outras peças com mais de uma dimensão.
+- Com um parâmetro, ele próprio forma o eixo da interpolação. Com dois ou mais parâmetros, o programa calcula o índice RMS das dimensões para formar um único eixo de tendência, mantendo cada coeficiente calculado de forma independente.
+- Mantidos os botões + referência e + coeficiente. A justificativa informa os parâmetros usados, o índice RMS quando aplicável, o método (linear/PCHIP) e os coeficientes resultantes.
+- O fluxo SINAPI da Tendência manual permanece inalterado.
+
+ATUALIZAÇÃO v1.5.6
+- A aba Tendência manual agora possui duas subabas independentes:
+  1) SINAPI — carregar composições: mantém integralmente o fluxo da v1.5.5 para códigos SINAPI.
+  2) Tendência genérica — manual: aceita referências de qualquer banco, sem depender da base SINAPI.
+- Na Tendência genérica, cada referência possui Código/identificação, Parâmetro dimensional e coeficientes de referência.
+- A tela inicia com 2 referências e 3 coeficientes. Os botões + referência e + coeficiente permitem ampliar a tabela conforme necessário.
+- O parâmetro desejado é informado separadamente. Cada coluna de coeficiente é calculada de forma independente:
+  com 2 referências usa interpolação/extrapolação linear; com 3 ou mais usa PCHIP por coeficiente.
+- Incluídos Copiar coeficientes e Copiar justificativa na nova subaba.
+- O fluxo SINAPI existente não foi substituído nem removido.
+
+ATUALIZAÇÃO v1.5.5
+- A aba Regra de 3 agora possui duas subabas: SINAPI — 1 referência e Regra de 3 genérica.
+- A Regra de 3 genérica aceita 1, 2 ou 3 dimensões. O fator é calculado por:
+  soma das dimensões desejadas / soma das dimensões da referência.
+- A nova subaba solicita Código da referência, Banco e Data/competência e inclui essas informações no botão Copiar justificativa.
+- A Tendência manual passa a funcionar somente com composições carregadas da referência SINAPI ativa. A opção Digitar todos os coeficientes foi removida da interface.
+
+Versão 1.5.3 | 30/09/2026
+
+
+CORREÇÃO v1.5.3
+- Tendência manual realmente genérica: qualquer composição existente na base SINAPI
+  completa pode ser carregada por código; o alinhamento não é mais limitado às
+  famílias pré-programadas de tubos e conexões.
+- Recursos repetidos, códigos de insumo que mudam com a dimensão/capacidade e
+  conjuntos de recursos diferentes não bloqueiam o carregamento. O programa tenta
+  alinhar por código, função/descrição e ocorrência; quando não há correspondente,
+  mantém a linha e deixa a célula vazia para conferência, sem excluir componentes.
+- Corrigidos os casos 103279/103280/103281 (18.000/24.000/36.000 BTU/H) e
+  103380/103381 (PEAD DN 225/250, inclusive mudança de espessura).
+- O seletor de unidade das Dimensões 1, 2 e 3 passa a incluir dinamicamente TODAS
+  as unidades de composição da referência SINAPI carregada, além de unidades
+  técnicas de dimensão/capacidade como MM, MM2, POL, kW, kVA e BTU/H.
+- O botão Copiar justificativa foi colocado na mesma barra de ações da aba
+  Tendência manual, junto de Copiar coeficientes e Copiar tabela, para ficar visível.
+- Validação em lote: 10.529 pares consecutivos e 2.112 grupos de 2 a 5 composições
+  com a mesma unidade de serviço foram carregados sem erro de alinhamento.
+- Referências com unidades de serviço diferentes continuam bloqueadas no cálculo,
+  pois os coeficientes têm denominadores diferentes e não são diretamente comparáveis.
+
+
+CORREÇÃO v1.5.2
+- Tendência manual: reconhecimento de capacidade em descrições SINAPI escritas como BTU/H, BTUH ou BTUS/H.
+- Corrige o alinhamento de recursos equivalentes com códigos diferentes por capacidade, como 103280 (24.000 BTU/H) e 103281 (36.000 BTU/H).
+- Nesta versão histórica, os demais recursos ainda eram tratados de forma restritiva; isso foi substituído pela lógica genérica da v1.5.3.
+
+CORREÇÃO v1.5.1
+- A Tendência manual passa a normalizar códigos SINAPI digitados/importados como
+  número ou texto (ex.: 94464, 94464.0 e célula textual do Excel).
+- A consulta usa a base completa selecionada e mantém acesso às 10.547
+  composições presentes na aba Analítico da referência incluída.
+
+PARA ABRIR NO WINDOWS
+
+1. Extraia TODO o ZIP para uma nova pasta gravável, como Documentos\Processo_3_v15.
+2. Abra ABRIR_PROCESSO_3.exe ou dê dois cliques em EXECUTAR_EM_PYTHON.bat.
+3. Na primeira abertura, aguarde a preparação do ambiente.
+
+É necessário Python 3.10 ou superior com Tcl/Tk. A primeira preparação usa
+internet para instalar openpyxl. Depois, a base incluída funciona sem internet
+e sem Microsoft Excel instalado. O inicializador .exe abre o programa Python;
+ele não contém o Python.
+
+Para gerar uma distribuição com Python embutido, execute
+GERAR_EXECUTAVEL_WINDOWS.bat em um Windows com Python e internet. Copie a pasta
+dist\Processo_3_Coeficientes inteira, incluindo _internal.
+Um executável completo gerado anteriormente não recebe as alterações sozinho;
+para usá-lo sem Python instalado no destino, gere novamente com o BAT acima.
+
+TRÊS ABAS DE CÁLCULO
+
+1. Tendência (2+ referências): tubos, conexões de tubulação e eletrocalhas, suas conexões e suportes.
+2. Regra de 3: possui duas subabas:
+   - SINAPI — 1 referência: exclusiva para famílias com exatamente uma composição reconhecida na competência ativa.
+   - Regra de 3 genérica: usa 1 a 3 dimensões, soma as dimensões preenchidas e aplica proporcionalidade direta ao coeficiente.
+3. Tendência manual: possui duas subabas:
+   - SINAPI — carregar composições: duas a cinco referências da base SINAPI ativa, com uma a três dimensões.
+   - Tendência genérica — manual: referências digitadas de qualquer banco, um ou mais parâmetros/dimensões por referência e múltiplos coeficientes independentes; parâmetros adicionais são combinados pelo índice RMS para formar o eixo da tendência.
+
+A aba Base SINAPI e orientações continua disponível como configuração.
+Este pacote não incorpora os Processos 1 e 2.
+
+ESCOPO DESTA VERSÃO
+
+As famílias automáticas das duas primeiras abas incluem tubos e conexões:
+água, esgoto, drenagem, gás, PCI, cobre de climatização, PVC, CPVC, PPR, PEX,
+PEAD, aço, ferro, latão, bronze e materiais correlatos. A disciplina Elétrica
+inclui todas as eletrocalhas, conexões e suportes da referência incorporada.
+Cabos, eletrodutos, equipamentos, aparelhos de climatização, dutos de ar e
+outros serviços continuam disponíveis por código na Tendência itens SINAPI.
+
+A base incluída contém:
+- 2.300 composições filtradas, incluindo 92 de eletrocalhas/conexões/suportes;
+- 1.366 insumos filtrados para consulta de preços, incluindo 99 adicionais;
+- 426 famílias com tendência na primeira aba, sendo 8 de Elétrica;
+- 191 famílias com referência única na aba Regra de 3;
+- 10.547 composições da aba Analítico acessíveis por código na aba manual;
+- entre as 426 famílias calculáveis: 278 de uma dimensão, 90 de duas
+  dimensões e 58 de três dimensões.
+- 78 composições de conexão com latão/bronze reconhecidas; 74 possuem ao
+  menos dois pontos comparáveis e participam de famílias calculáveis.
+
+BASE INCLUÍDA — AGOSTO/2026
+
+Referência oficial SINAPI 08/2026, emitida em 11/09/2026.
+Foi mantida a mesma base incluída na versão anterior. Esta atualização do
+programa não representa uma nova consulta da última competência publicada.
+Arquivo: REFERENCIA_ORIGINAL\SINAPI_Referencia_2026_08.xlsx
+Coeficientes: aba Analítico. Preços sem desoneração: aba ISD.
+SHA-256 do XLSX:
+1587f45801fac7f50e44cffcd1269926534c47a161b37142d04d1b56664aec89
+
+Página oficial para novas competências:
+https://www.caixa.gov.br/site/Paginas/downloads.aspx#categoria_888
+
+COMO CALCULAR
+
+1. Pesquise o código, material ou tipo de conexão.
+2. Selecione a família e confira material, junta, classe e instalação.
+3. Escolha a composição de origem.
+4. Informe a dimensão desejada. Nas conexões com redução, informe as duas
+   bocas. Para todo tê, informe as três bocas.
+5. Calcule e confira cada componente, a curva e a aba de insumos/preços.
+6. Copie a justificativa curta ou exporte o relatório Excel completo.
+
+REGRA OBRIGATÓRIA DOS TÊS
+
+O programa sempre representa um tê com três dimensões:
+- descrição com uma dimensão D: D × D × D;
+- descrição com duas dimensões D1 × D2: D1 × D1 × D2;
+- descrição com três dimensões: mantém D1 × D2 × D3.
+
+Exemplo: a composição 89624, descrita como DN 40 × 32 mm, é mostrada como
+40 × 40 × 32 mm. Tês normais e tês de redução ficam obrigatoriamente em
+famílias diferentes. Tê de inspeção, misturador, com bucha, serviço integrado
+ou outro método específico também permanece separado.
+
+As três bocas participam da tendência pelo diâmetro equivalente RMS:
+raiz quadrada da média dos quadrados dos três diâmetros convertidos em mm.
+A descrição SINAPI original nunca é alterada e aparece nas referências.
+
+CONEXÕES DE REDUÇÃO E LATÃO/BRONZE
+
+Luvas, joelhos, cotovelos, curvas, buchas, uniões, nípeis, adaptadores,
+conectores e demais conexões de redução usam as duas dimensões no cálculo.
+Todas as combinações dimensionais tecnicamente equivalentes ficam juntas na
+mesma família. Material, junta, aplicação, local de instalação e método
+executivo continuam separados.
+
+Conexões em latão ou bronze, inclusive conexões de PVC com bucha de latão,
+foram incluídas pelas mesmas regras. As composições reconhecidas com apenas
+uma referência passam a aparecer em Regra de 3. Uma tendência observada não
+pode ser determinada com um único ponto.
+
+Dimensões em polegadas são exibidas como frações, exatamente no padrão de
+leitura do SINAPI: 1 1/8", 1 5/8", 2 1/2" etc. Dimensões métricas permanecem
+em mm. Os campos aceitam frações e valores acompanhados da unidade.
+
+MÉTODO DE CÁLCULO — TENDÊNCIA
+
+Cada recurso da CPU tem sua própria curva. Com três ou mais pontos, o método
+é PCHIP, uma interpolação cúbica por trechos que preserva a forma observada.
+Não se aplica regra de três à composição inteira.
+
+Com apenas dois índices geométricos compatíveis, o cálculo é permitido e usa
+interpolação linear. O programa mostra um alerta explícito de maior
+possibilidade de erro e exige revisão técnica.
+
+Com quatro ou mais pontos, a validação retira pontos internos, recalcula e
+mostra o erro médio absoluto normalizado (NMAE). O indicador não é
+probabilidade de acerto nem aferição de campo.
+
+REGRA DE 3 — SOMENTE UMA REFERÊNCIA
+
+Pesquise o código na segunda aba e informe o diâmetro desejado. Em conexões
+com duas ou três bocas, informe todas as dimensões nas unidades mostradas.
+
+Fator = dimensão desejada / dimensão de origem.
+Coeficiente alvo = coeficiente original × fator.
+
+Em conexões com várias bocas, o fator é RMS_alvo / RMS_origem. O RMS usa
+as bocas convertidas em mm. Essa redução a um índice é uma hipótese
+simplificadora, não uma aferição SINAPI ou tendência validada.
+
+Por padrão, o consumo do tubo/conexão principal é mantido: metros por metro
+e peças por unidade não aumentam automaticamente com o diâmetro. Os demais
+recursos recebem o fator. Revise a coluna Aplicar fator? e use duplo clique
+ou o botão Aplicar/manter para escolher quais recursos serão proporcionais.
+A memória registra a escolha e o fator efetivo de cada recurso.
+
+Marque a ciência da limitação para calcular. Os preços não recebem esse
+fator. A busca do insumo do alvo continua mostrando código e descrição
+coerentes, com preços PE/SP quando encontrados. A adaptação não cria código
+oficial da composição. Revisão técnica obrigatória.
+
+TENDÊNCIA MANUAL — CALCULADORA GENÉRICA
+
+Primeiro selecione um dos dois modos no alto da aba:
+- Carregar do SINAPI: busca componentes e coeficientes pelos códigos.
+Trocar o modo limpa a tabela de coeficientes, mantendo os campos das referências.
+
+FORMULÁRIO DAS REFERÊNCIAS
+
+A tela começa com duas linhas. Cada linha tem caixas para Código SINAPI,
+Dimensão 1, Dimensão 2 e Dimensão 3. Use + composição ao final da última
+linha para acrescentar referências, até cinco. Remova linhas extras pelo
+botão Remover. Linhas adicionais totalmente vazias são ignoradas.
+
+Dimensão 1 é obrigatória. Dimensões 2 e 3 são opcionais. Para um elemento
+com apenas uma dimensão, preencha somente a primeira caixa em todas as
+referências; o programa aceita esse caso normalmente. Para elementos com
+duas ou três dimensões, use a mesma quantidade e ordem nas referências e no
+alvo. Não preencha a terceira deixando uma lacuna na segunda.
+
+Selecione a unidade no topo de cada coluna. Frações em polegadas continuam
+aceitas (1 1/4, 1 1/2 etc.) com a unidade POL. A mesma coluna deve usar a
+mesma unidade em todas as referências.
+
+Com uma dimensão, pode usar uma grandeza como diâmetro, seção, área, potência
+ou comprimento. Com duas ou três, use comprimentos (MM, CM, M ou POL): todas
+as dimensões participam pelo índice RMS em mm, conforme o método da
+calculadora de tubos e conexões. O RMS é uma hipótese dimensional; confira
+sua adequação ao serviço. Geometrias diferentes com o mesmo RMS não são
+tratadas como dois pontos distintos de uma curva.
+
+EXEMPLO COM BUSCA SINAPI
+
+1. Marque Carregar do SINAPI.
+2. Na primeira linha, código 94462 e dimensão 1 igual a 50.
+3. Na segunda, código 94463 e dimensão 1 igual a 65.
+4. Clique em + composição: na terceira, código 94464 e dimensão 1 igual a 80.
+5. Deixe dimensões 2 e 3 vazias e a unidade da primeira coluna em MM.
+6. Clique em Carregar composições SINAPI. Confira os recursos e use Ver
+   descrições das referências quando precisar consultar a especificação.
+7. Escolha a origem, informe alvo D1 igual a 70 e confira os coeficientes.
+8. Confirme a equivalência técnica e clique em Calcular.
+
+Também pode usar códigos de outras disciplinas. Para cabos, por exemplo,
+91924 com dimensão 1 igual a 1,5; 91926 com 2,5; 91928 com 4. A unidade
+da coluna é MM2, correspondente à seção, e as demais dimensões ficam vazias.
+
+COPIAR O RESULTADO
+
+- Copiar coeficientes: copia somente os novos valores, um por linha e na
+  ordem exibida, para colar em uma coluna do Excel.
+- Copiar tabela: inclui identificação, código de origem quando existente,
+  unidade, coeficiente original, novo coeficiente e situação, em colunas.
+- Ctrl+C no resultado: copia os novos coeficientes das linhas selecionadas.
+- Copiar justificativa e Exportar Excel continuam disponíveis.
+
+Na Tendência manual, o resultado segue a ordem dos componentes da composição escolhida como origem. Confira a ordem da composição de destino antes de colar.
+Se houver resultado inválido, a cópia só de números é interrompida para não
+omitir uma linha ou inserir zero indevidamente. A tabela completa registra
+a situação; também é possível selecionar apenas linhas calculadas.
+
+Dois pontos: reta que une os coeficientes, com intercepto livre.
+c(x) = c1 + (c2 - c1) × (x - x1) / (x2 - x1).
+Ex.: x1=10, c1=1; x2=20, c2=3; alvo=15 resulta em 2, não 1,5.
+Três ou mais pontos: PCHIP por componente, como na aba de tendência.
+Quatro ou mais pontos permitem o mesmo indicador de validação interna.
+Extrapolar exige autorização e usa a tangente da extremidade, sem limite
+percentual. Resultados negativos ou não finitos não são aproveitados.
+
+A carga automática exige unidades de serviço compatíveis. Quando os conjuntos de recursos diferem, o programa mantém os componentes visíveis e deixa sem valor apenas as correspondências que não puder alinhar automaticamente. Você confirma a equivalência técnica antes do cálculo.
+
+A aba manual não atribui novo código SINAPI, não consulta preço do alvo e
+não define substituições de material. Na coincidência com um ponto informado,
+mostra esse coeficiente e a referência usada, sem certificar a composição
+inteira como oficial. Copie a justificativa ou exporte a memória Excel.
+
+EXTRAPOLAÇÃO
+
+A extrapolação fica desligada por padrão. Se o alvo estiver fora do intervalo,
+é necessário marcar a autorização. Não existe mais limite de 20% nem exigência
+de quatro pontos. A extrapolação usa a tangente da extremidade PCHIP (ou a
+reta dos dois pontos), fica identificada no relatório e sempre exige revisão
+técnica. Resultado não finito ou coeficiente negativo continua bloqueado.
+
+INSUMO SINAPI E PREÇOS
+
+Para o material dimensional da composição, o programa procura na aba ISD da
+mesma referência um insumo de tubo/conexão com a geometria desejada. Retorna:
+- código e descrição encontrados;
+- preço em Pernambuco (PE), quando existente;
+- preço em São Paulo (SP), quando existente;
+- aviso quando o insumo existe sem preço ou não foi encontrado.
+
+A consulta não inventa código, não substitui preço e não altera coeficientes.
+Um insumo ausente da ISD também é informado. Disponibilidade comercial,
+frete, encargos, BDI e perdas adicionais não são calculados.
+
+JUSTIFICATIVA CURTA
+
+Cada resultado possui texto pronto para a referência da composição. Exemplo:
+"Coeficientes adaptados com base na composição SINAPI 89624, de 40 mm ×
+40 mm × 32 mm para 45 mm × 45 mm × 35 mm, conforme tendência das composições
+comparáveis da referência 08/2026."
+
+O botão "Copiar justificativa" envia esse texto para a área de transferência.
+
+SELEÇÃO MANUAL
+
+Abra Tendência manual > Tendência itens SINAPI. Informe de 2 a 5 códigos
+nas caixas de referência e preencha as dimensões e a unidade de cada coluna.
+Carregue as composições, confira a tabela de coeficientes e informe o alvo.
+O antigo botão de seleção por código na primeira aba foi removido.
+
+Os componentes são alinhados por código ou descrição técnica, mesmo quando
+códigos e dimensões dos insumos mudam entre referências. Variações gráficas
+de medidas, frações, vírgulas, espaços e bitola de eletrocalha não criam linhas
+extras artificiais. Material, junta, função, ângulo, norma, classe, tipo e
+unidade continuam relevantes para o alinhamento. As descrições oficiais e
+os códigos de cada referência ficam preservados para conferência.
+
+Cada ocorrência repetida permanece em sua própria linha. Recursos realmente
+sem correspondente continuam visíveis com célula vazia: não são excluídos
+nem preenchidos automaticamente com zero. Zero existente na base é mantido.
+Confira a equivalência técnica entre as referências antes de calcular.
+
+AÇO, AÇO CARBONO, AÇO/FERRO GALVANIZADO E FERRO FUNDIDO
+
+Todas as composições dimensionais desses materiais presentes na base filtrada
+ficam pesquisáveis na calculadora. Isso inclui o código 94464 e sua família
+94462/94463/94464, tubos com DN métrico e NPS em polegadas, tês e demais
+conexões, além de assentamentos de ferro fundido cujo texto informa apenas
+"DN 150", sem repetir a unidade mm.
+
+O programa reconhece equivalências nominais de tubulação (por exemplo, DN 80
+e NPS 3") sem tratá-las como conversão geométrica de 25,4 mm. Nos insumos de
+tubos metálicos, espessura e peso linear variam com o diâmetro e não separam a
+família; material, classe, Schedule, norma, junta e aplicação continuam sendo
+critérios obrigatórios de separação.
+
+As 12 composições de aço carbono definidas por duas opções de DN também foram
+incluídas. Exemplo: DN 1000 mm OU DN 1100 mm. Um alvo dentro dessa faixa usa a
+composição oficial diretamente. Somente para traçar tendência entre faixas, o
+eixo matemático usa o ponto médio e o relatório mostra um aviso específico.
+
+Composições metálicas dimensionais com um único ponto aparecem na aba
+Regra de 3, com hipótese proporcional explícita. Uma tendência exige pelo
+menos duas geometrias compatíveis. Os
+códigos 107308 e 107309 são kits completos definidos por quantidade de
+cilindros, não por diâmetro, e por isso não pertencem à calculadora dimensional.
+
+RELATÓRIO EXCEL
+
+O relatório possui cinco abas:
+- Leia primeiro: competência, método, justificativa e alertas;
+- Coeficientes: códigos e descrições dos insumos de origem e da nova
+  composição, coeficientes, variação e situação por recurso; na regra de 3,
+  inclui seleção, fator aplicado e conta por recurso;
+- Composições de referência: geometria interpretada e descrição original;
+- Pontos e variações: observações, índices, variações e inclinações;
+- Insumos SINAPI PE-SP: disponibilidade e preços encontrados na ISD.
+
+Na Tendência manual, as referências e os coeficientes são carregados da base SINAPI ativa. O relatório é uma memória dos resultados calculados, não uma planilha recalculável para editar os alvos.
+
+ATUALIZAR A REFERÊNCIA
+
+Na aba "Base SINAPI e orientações", importe o ZIP oficial ou o XLSX
+SINAPI_Referência da competência desejada. O arquivo precisa conter as abas
+Analítico e, para a consulta de preços, ISD. Curva ABC e tabela apenas de
+preços não substituem a referência completa. A importação mantém dois
+conjuntos da mesma competência: tubos/conexões e eletrocalhas/conexões/suportes para as calculadoras automáticas e todas as composições para a Tendência manual. Não altera o arquivo original.
+Uma base completa de outra competência nunca é misturada à referência ativa.
+
+LIMITES TÉCNICOS
+
+Estimativas são propostas para composição própria a revisar; não são novas
+composições oficiais SINAPI. A análise usa a CPU de primeiro nível e não
+dimensiona a instalação. Material, aplicação, junta, classe de pressão,
+método executivo e compatibilidade normativa continuam sob conferência do
+orçamentista.
+
+ERROS E MANUTENÇÃO
+
+Erros internos: %LOCALAPPDATA%\Processo3Coeficientes\processo3.log
+Base importada: %LOCALAPPDATA%\Processo3Coeficientes\base_ativa.json.gz
+Base para seleção manual: %LOCALAPPDATA%\Processo3Coeficientes\base_completa.json.gz
+O botão "Usar base incluída" restaura agosto/2026.
+
+Arquivos principais:
+- processo3.pyw: entrada;
+- coeficientes_app.py: interface;
+- coeficientes_core.py: importação, famílias, cálculo e relatório;
+- regra_tres_core.py: proporcionalidade com referência única;
+- tendencia_manual_core.py: tendência com referências informadas;
+- calculadoras_extras.py: interface das duas novas calculadoras;
+- data\sinapi_base.json.gz: base compacta incluída;
+- data\sinapi_completa.json.gz: todas as composições para seleção manual;
+- tests: testes automatizados.
+
+Executar testes no Windows:
+.venv\Scripts\python.exe -m unittest discover -s tests -v
+
+VALIDAÇÃO DESTA ENTREGA
+
+146 testes automatizados aprovados. Incluem os métodos e fluxos anteriores,
+as oito famílias de eletrocalhas/conexões/suportes, os 92 alvos oficiais,
+consulta de preços, reimportação, migração da base, exportação e alinhamento
+manual de recursos dimensionais. Nenhuma linha genuína foi descartada ou
+preenchida artificialmente com zero nos testes de recursos sem par.
+SciPy é opcional apenas para os testes comparativos; não é dependência da
+calculadora e esses testes são pulados se ela não estiver instalada.
+
+A interface e o executável final gerado pelo PyInstaller devem ser exercitados
+no Windows de destino, pois este ambiente de entrega não possui área de
+trabalho Windows.

@@ -1,0 +1,18 @@
+[run]
+branch = true
+source = .
+
+[report]
+show_missing = true
+skip_covered = true
+precision = 1
+fail_under = 80
+omit =
+    tests/*
+    dependencias/*
+    calculadoras_extras.py
+    celulas_copiaveis.py
+    coeficientes_app.py
+    manual_views.py
+    manual_workspace.py
+    processo3.pyw

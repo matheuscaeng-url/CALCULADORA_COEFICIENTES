@@ -1,0 +1,2 @@
+Bibliotecas Python incluídas para leitura e exportação de Excel, sem instalação adicional.
+openpyxl 3.1.5 e et_xmlfile 2.0.0. Licenças em licencas/.
